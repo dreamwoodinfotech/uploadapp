@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('DashCtrl', function($scope, $cordovaFileTransfer) {
+.controller('DashCtrl', function($scope, $cordovaFileTransfer,$ionicLoading) {
   ////////////////////////////////////////////////////////////////////fileupload
   $scope.upload  = function(){
     console.info("achieved");
@@ -8,9 +8,10 @@ angular.module('starter.controllers', ['ngCordova'])
             fileKey: "adam",
             fileName: "adam.png",
             chunkedMode: false,
-            mimeType: "image/jpg"
+            mimeType: "image/png",
+            httpMethod: "POST"
         };
-        $cordovaFileTransfer.upload("http://192.168.0.111/upload", "/android_asset/www/img/adam.jpg", options).then(function(result) {
+        $cordovaFileTransfer.upload("http://192.168.0.111/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
             console.log("SUCCESS: " + JSON.stringify(result.response));
             alert("SUCCESS: " + JSON.stringify(result.response)+" and data is:"+angular.toJson(result.response));
         }, function(err) {
@@ -18,7 +19,12 @@ angular.module('starter.controllers', ['ngCordova'])
             alert("file not uploaded "+angular.toJson(err));
         }, function (progress) {
             // constant progress updates
-            alert("Loading....");
+            //alert("Loading....");
+            $ionicLoading.show({
+              template: 'Loading...'
+            }).then(function(){
+               console.log("The loading indicator is now displayed");
+            });
         });
     console.info("file upload done");
     alert("done!@");
