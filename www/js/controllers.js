@@ -12,27 +12,29 @@ angular.module('starter.controllers', ['ngCordova'])
         };
         $cordovaFileTransfer.upload("http://ionicapp.890m.com/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
             console.log("SUCCESS: " + JSON.stringify(result.response));
+            $ionicLoading.hide();
             alert("SUCCESS: " + JSON.stringify(result.response)+" and data is:"+angular.toJson(result.response));
         }, function(err) {
             console.log("ERROR: " + JSON.stringify(err));
             alert("file not uploaded "+angular.toJson(err));
         }, function (progress) {
             // constant progress updates
-            alert("Loading....");
-            /*$ionicLoading.show({
+            //alert("Loading....");
+            $ionicLoading.show({
               template: 'Loading...'
             }).then(function(){
                console.log("The loading indicator is now displayed");
-            });*/
+            });
         });
     console.info("file upload done");
     alert("done!@");
+    $ionicLoading.hide();
   };
 
 
   $scope.download = function(){
     var url = "http://ionicapp.890m.com/files/pic.jpg";
-    var targetPath = cordova.file.documentsDirectory + "myfirstimage.png";
+    var targetPath = "sdcard/Download/" + "myfirstimage.jpg";//cordova.file.documentsDirectory
     var trustHosts = true;
     var options = {};
 
@@ -42,7 +44,7 @@ angular.module('starter.controllers', ['ngCordova'])
         alert("SUCCESS: " + JSON.stringify(result.response));
       }, function(err) {
         // Error
-        alert("file not uploaded "+angular.toJson(err));
+        alert("file not downloaded "+angular.toJson(err));
       }, function (progress) {
         $timeout(function () {
           $scope.downloadProgress = (progress.loaded / progress.total) * 100;
