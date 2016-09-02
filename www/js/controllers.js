@@ -11,7 +11,7 @@ angular.module('starter.controllers', ['ngCordova'])
             mimeType: "image/png",
             httpMethod: "POST"
         };
-        $cordovaFileTransfer.upload("http://192.168.0.111/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
+        $cordovaFileTransfer.upload("http://ionicapp.890m.com/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
             console.log("SUCCESS: " + JSON.stringify(result.response));
             alert("SUCCESS: " + JSON.stringify(result.response)+" and data is:"+angular.toJson(result.response));
         }, function(err) {
@@ -19,12 +19,12 @@ angular.module('starter.controllers', ['ngCordova'])
             alert("file not uploaded "+angular.toJson(err));
         }, function (progress) {
             // constant progress updates
-            //alert("Loading....");
-            $ionicLoading.show({
+            alert("Loading....");
+            /*$ionicLoading.show({
               template: 'Loading...'
             }).then(function(){
                console.log("The loading indicator is now displayed");
-            });
+            });*/
         });
     console.info("file upload done");
     alert("done!@");
