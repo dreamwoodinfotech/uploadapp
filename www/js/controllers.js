@@ -8,8 +8,7 @@ angular.module('starter.controllers', ['ngCordova'])
             fileKey: "adam",
             fileName: "adam.png",
             chunkedMode: false,
-            mimeType: "image/png",
-            httpMethod: "POST"
+            mimeType: "image/png"
         };
         $cordovaFileTransfer.upload("http://ionicapp.890m.com/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
             console.log("SUCCESS: " + JSON.stringify(result.response));
@@ -30,6 +29,27 @@ angular.module('starter.controllers', ['ngCordova'])
     alert("done!@");
   };
 
+
+  $scope.download = function(){
+    var url = "http://ionicapp.890m.com/files/pic.jpg";
+    var targetPath = cordova.file.documentsDirectory + "myfirstimage.png";
+    var trustHosts = true;
+    var options = {};
+
+    $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
+      .then(function(result) {
+        // Success!
+        alert("SUCCESS: " + JSON.stringify(result.response));
+      }, function(err) {
+        // Error
+        alert("file not uploaded "+angular.toJson(err));
+      }, function (progress) {
+        $timeout(function () {
+          $scope.downloadProgress = (progress.loaded / progress.total) * 100;
+        });
+      });
+      alert("done downloaded");
+  };
 
 })
 
