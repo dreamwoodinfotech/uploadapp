@@ -34,7 +34,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
   $scope.download = function(){
     var url = "http://ionicapp.890m.com/files/pic.jpg";
-    var targetPath = cordova.file.documentsDirectory+"/sdcard/Download/myfirstimage.jpg";//
+    var targetPath = "/sdcard/Download/myfirstimage.jpg";//cordova.file.documentsDirectory
     var trustHosts = true;
     var options = {};
 
