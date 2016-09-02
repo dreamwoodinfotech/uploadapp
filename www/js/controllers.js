@@ -10,7 +10,7 @@ angular.module('starter.controllers', ['ngCordova'])
             chunkedMode: false,
             mimeType: "image/jpg"
         };
-        $cordovaFileTransfer.upload("http://ionicapp.890m.com/upload/", "/android_asset/www/img/adam.jpg", options).then(function(result) {
+        $cordovaFileTransfer.upload("http://192.168.0.111/upload", "img/adam.jpg", options).then(function(result) {
             console.log("SUCCESS: " + JSON.stringify(result.response));
             alert("SUCCESS: " + JSON.stringify(result.response)+" and data is:"+angular.toJson(result.response));
         }, function(err) {
