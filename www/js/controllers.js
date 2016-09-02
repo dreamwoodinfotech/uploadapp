@@ -1,6 +1,27 @@
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, $cordovaFileTransfer) {
+  ////////////////////////////////////////////////////////////////////fileupload
+  $scope.upload  = function(){
+    console.info("achieved");
+    var options = {
+            fileKey: "adam",
+            fileName: "adam.png",
+            chunkedMode: false,
+            mimeType: "image/jpg"
+        };
+        $cordovaFileTransfer.upload("http://ionicapp.890m.com/upload", "/img/adam.jpg", options).then(function(result) {
+            console.log("SUCCESS: " + JSON.stringify(result.response));
+        }, function(err) {
+            console.log("ERROR: " + JSON.stringify(err));
+        }, function (progress) {
+            // constant progress updates
+        });
+    console.info("file upload done");
+  };
+
+
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
