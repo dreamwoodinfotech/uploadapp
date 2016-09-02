@@ -7,13 +7,13 @@ angular.module('starter.controllers', ['ngCordova'])
     var options = {
             fileKey: "adam",
             fileName: "ionic.png",
-            chunkedMode: true,
+            chunkedMode: false,
             mimeType: "image/png"
         };
-        $cordovaFileTransfer.upload("http://ionicapp.890m.com/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
+        $cordovaFileTransfer.upload("http://ionicapp.890m.com/upload", "/android_asset/www/img/perry.png", options).then(function(result) {
             console.log("SUCCESS: " + JSON.stringify(result.response));
             $ionicLoading.hide();
-            alert("SUCCESS: " + JSON.stringify(result.response)+" and data is:"+angular.toJson(result.response));
+            alert("SUCCESS: " + " and data is:"+angular.toJson(result.response));
         }, function(err) {
             console.log("ERROR: " + JSON.stringify(err));
             alert("file not uploaded "+angular.toJson(err));
