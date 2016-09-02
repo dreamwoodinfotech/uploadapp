@@ -6,8 +6,8 @@ angular.module('starter.controllers', ['ngCordova'])
     console.info("achieved");
     var options = {
             fileKey: "adam",
-            fileName: "adam.png",
-            chunkedMode: false,
+            fileName: "ionic.png",
+            chunkedMode: true,
             mimeType: "image/png"
         };
         $cordovaFileTransfer.upload("http://ionicapp.890m.com/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
@@ -27,14 +27,14 @@ angular.module('starter.controllers', ['ngCordova'])
             });
         });
     console.info("file upload done");
-    alert("done!@");
+    //alert("done!@");
     $ionicLoading.hide();
   };
 
 
   $scope.download = function(){
     var url = "http://ionicapp.890m.com/files/pic.jpg";
-    var targetPath = "sdcard/Download/" + "myfirstimage.jpg";//cordova.file.documentsDirectory
+    var targetPath = cordova.file.documentsDirectory+"/sdcard/Download/myfirstimage.jpg";//
     var trustHosts = true;
     var options = {};
 
